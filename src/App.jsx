@@ -1,7 +1,12 @@
+import Button from '@mui/material/Button';
+import { CssBaseline } from '@mui/material';
+
 function App() {
   return (
     <>
-    Films DB
+      <CssBaseline /> {/* Drops basic margins of body */}
+      Films DB
+      <Button variant="contained">Hello world</Button>
     </>
   )
 }
