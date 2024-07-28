@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { 
   CssBaseline, 
   Box, 
@@ -5,11 +6,55 @@ import {
   Toolbar, 
   IconButton, 
   Typography,
-  Button 
+  Button,
+  Drawer,
+  List,
+  ListItem,
+  ListItemButton,
+  ListItemIcon,
+  ListItemText,
+  Divider 
 } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
+import InboxIcon from '@mui/icons-material/MoveToInbox';
+import MailIcon from '@mui/icons-material/Mail';
 
 function App() {
+  const [isDrawerOpen, setDrawerOpen] = useState(false);
+
+  const list = () => (
+    <Box
+      sx={{ width: 250 }}
+      role="presentation"
+    >
+      <List>
+        {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
+          <ListItem key={text} disablePadding>
+            <ListItemButton>
+              <ListItemIcon>
+                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+              </ListItemIcon>
+              <ListItemText primary={text} />
+            </ListItemButton>
+          </ListItem>
+        ))}
+      </List>
+      <Divider />
+      <List>
+        {['All mail', 'Trash', 'Spam'].map((text, index) => (
+          <ListItem key={text} disablePadding>
+            <ListItemButton>
+              <ListItemIcon>
+                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+              </ListItemIcon>
+              <ListItemText primary={text} />
+            </ListItemButton>
+          </ListItem>
+        ))}
+      </List>
+    </Box>
+  );
+
   return (
     <>
       <CssBaseline /> {/* Drops basic margins of body */}
@@ -22,6 +67,7 @@ function App() {
             color="inherit"
             aria-label="menu"
             sx={{ mr: 2 }}
+            onClick={() => setDrawerOpen(true)}
           >
             <MenuIcon />
           </IconButton>
@@ -31,6 +77,15 @@ function App() {
           <Button color="inherit">Login</Button>
         </Toolbar>
       </AppBar>
+
+      <Drawer
+        anchor='left'
+        open={isDrawerOpen}
+        onClose={() => setDrawerOpen(false)}
+      >
+        {list()}
+      </Drawer>
+
     </Box>
     </>
   )
