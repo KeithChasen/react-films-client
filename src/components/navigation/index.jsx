@@ -16,6 +16,7 @@ import {
 } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import SettingsIcon from '@mui/icons-material/Settings';
+import { Link } from "react-router-dom";
 
 const Navigation = () => {
   const [isDrawerOpen, setDrawerOpen] = useState(false);
@@ -27,12 +28,14 @@ const Navigation = () => {
     >
       <List>
         <ListItem key='Settings'  disablePadding>
-        <ListItemButton>
+        <Link to='/settings'>
+          <ListItemButton>
             <ListItemIcon>
-            <SettingsIcon />
+              <SettingsIcon />
             </ListItemIcon>
             <ListItemText primary='Settings' />
-        </ListItemButton>
+          </ListItemButton>
+        </Link>  
         </ListItem>
       </List>
     </Box>
@@ -54,15 +57,20 @@ const Navigation = () => {
               <MenuIcon />
             </IconButton>
           </Hidden>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            Movies
-          </Typography>
+          <Link to='/'>
+            <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+              Movies
+            </Typography>
+          </Link>
           <Box sx={{ display: { xs: 'none', lg: 'flex' } }}>
+            <Link to='/settings'>
               <Button
                 sx={{ my: 2, color: 'white', display: 'block' }}
               >
                Settings
               </Button>
+            </Link>
+              
           </Box>
         </Toolbar>
       </AppBar>

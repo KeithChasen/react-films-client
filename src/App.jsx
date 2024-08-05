@@ -1,14 +1,34 @@
-import { 
-  CssBaseline
-} from '@mui/material';
+import {
+  createBrowserRouter,
+  RouterProvider,
+} from "react-router-dom";
+import Layout from "./components/Layout";
+import { Home, Settings, Recommend } from './pages';
 
-import { Navigation } from './components';
+const router = createBrowserRouter([
+  {
+    element: <Layout />,
+    children : [
+      {
+        path: '/',
+        element: <Home />
+      },
+      {
+        path: '/settings',
+        element: <Settings />
+      },
+      {
+        path: '/recommend',
+        element: <Recommend />
+      }
+    ]
+  }
+]);
 
 function App() {
   return (
     <>
-      <CssBaseline /> {/* Drops basic margins of body */}
-      <Navigation />
+      <RouterProvider router={router}/>
     </>
   )
 }
